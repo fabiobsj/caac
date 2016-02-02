@@ -15,7 +15,5 @@
 	<br /><br />
 	<a href = "gerenciamentofreq.php"> Gerenciamento de Frequênia</a>
 	<br />
-	
-		
 </BODY>
 </HTML>
