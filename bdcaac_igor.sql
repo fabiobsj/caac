@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `cadastros`
 --
 
+USE bdcaac;
+
+
 CREATE TABLE IF NOT EXISTS `cadastros` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_tipo` int(11) NOT NULL,

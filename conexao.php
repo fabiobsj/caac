@@ -1,7 +1,9 @@
 <?php
-$conect = mysql_connect("localhost", "root", "");
-
-if (!$conect) die ("<h1>Falha na coneco com o Banco de Dados!</h1>");
-
-$db = mysql_select_db("bdcaac");
-?>
+$servidor = 'localhost';
+$usuario = 'root';
+$senha = '';
+$banco = 'bdcaac';
+// Conecta-se ao banco de dados MySQL
+$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
+// Caso algo tenha dado errado, exibe uma mensagem de erro
+if (mysqli_connect_errno()) trigger_error(mysqli_connect_error());
