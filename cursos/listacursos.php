@@ -5,16 +5,17 @@ include "../conexao.php";
 
 // Executa uma consulta que pega cinco notícias
 $sql = "SELECT
-        u.id, u.nome, endereco, cpf, telefone, login, e.nome entidade, tc.nome tipo
+            c.id, c.nome, data_inicio, data_fim, hora_entrada, hora_saida, descricao, u.nome palestrante, e.nome entidade
         FROM `curso` c
-        LEFT JOIN entidade e ON (u.entidade_id = e.id)
-        LEFT JOIN tipo_cadastro tc ON (u.tipo_id = tc.id)";
+            LEFT JOIN usuario u ON c.palestrante_id = u.id
+            LEFT JOIN entidade e ON c.entidade_id = e.id
+        ";
 $query = $mysqli->query($sql);
 
 ?>
 
     <h2>Lista de Cursos</h2>
-    <a href="cadastrarusuario.php" target="_self" class="btn btn-primary">Cadastrar</a>
+    <a href="cadastrarcurso.php" target="_self" class="btn btn-primary">Cadastrar</a>
     <br /><br />
     <div class="row">
         <div class="col-md-12">
@@ -35,16 +36,17 @@ $query = $mysqli->query($sql);
                 <?php
                 while ($dados = $query->fetch_array()) {
                     echo "<tr>";
-                    echo "<td>" . utf8_encode($dados['tipo']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['nome']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['entidade']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['endereco']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['cpf']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['telefone']) ."</td>";
-                    echo "<td>$dados[login]</td>";
+                    echo "<td>$dados[nome]</td>";
+                    echo "<td>$dados[entidade]</td>";
+                    echo "<td>$dados[palestrante]</td>";
+                    echo "<td>$dados[data_inicio]</td>";
+                    echo "<td>$dados[data_fim]</td>";
+                    echo "<td>$dados[hora_entrada]</td>";
+                    echo "<td>$dados[hora_saida]</td>";
+                    echo "<td>$dados[descricao]</td>";
                     echo "<td>
-                        <a href='editarusuario.php?id=$dados[id]' class='btn btn-default'><i class='glyphicon glyphicon-edit'></i></a>
-                        <a href='javascript:removeUsuario($dados[id]);' class='btn btn-default'><i class='glyphicon glyphicon-trash'></i></a>
+                        <a href='editarcurso.php?id=$dados[id]' class='btn btn-default'><i class='glyphicon glyphicon-edit'></i></a>
+                        <a href='javascript:removeCurso($dados[id]);' class='btn btn-default'><i class='glyphicon glyphicon-trash'></i></a>
                     </td>";
                     echo "</tr>";
                 }
@@ -53,9 +55,9 @@ $query = $mysqli->query($sql);
         </div>
     </div>
     <script>
-        function removeUsuario(id){
-            if(confirm('Deseja remover este usuário?')){
-                window.location = 'removeusuario.php?id=' + id;
+        function removeCurso(id){
+            if(confirm('Deseja remover este curso?')){
+                window.location = 'removecurso.php?id=' + id;
             }
         }
     </script>
