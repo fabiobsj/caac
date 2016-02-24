@@ -34,8 +34,8 @@ $query = $mysqli->query($sql);
                 <?php
                 while ($dados = $query->fetch_array()) {
                     echo "<tr>";
-                    echo "<td>" . utf8_encode($dados['tipo']) ."</td>";
-                    echo "<td>" . utf8_encode($dados['nome']) ."</td>";
+                    echo "<td>" . $dados['tipo'] ."</td>";
+                    echo "<td>" . $dados['nome'] ."</td>";
                     echo "<td>" . utf8_encode($dados['entidade']) ."</td>";
                     echo "<td>" . utf8_encode($dados['endereco']) ."</td>";
                     echo "<td>" . utf8_encode($dados['cpf']) ."</td>";
